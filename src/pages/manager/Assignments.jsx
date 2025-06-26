@@ -27,8 +27,18 @@ export default function Assignments() {
 
   const handleAssign = (e) => {
     e.preventDefault();
+    setMessage(""); 
     if (!selectedProject || !selectedEmployee) return;
-    assignmentService.assignEmployeeToProject(selectedProject, selectedEmployee)
+
+    if(selectedProject === "") {
+      setMessage("Please select a project to assign employees.");
+      return;
+    }
+    if(selectedEmployee === "") {
+      setMessage("Please select an employee to assign.");
+      return;
+    }
+    assignmentService.assignEmployeeToProject(selectedProject,selectedEmployee)
       .then(() => {
         setMessage("Employee assigned successfully!");
         assignmentService.listEmployeesByProject(selectedProject)
@@ -58,7 +68,7 @@ export default function Assignments() {
           value={selectedProject || ""}
           onChange={e => setSelectedProject(e.target.value)}
         >
-          <option value="">-- Select a project --</option>
+          <option value="">Select a project</option>
           {projects.map(p => (
             <option key={p.id} value={p.id}>{p.name}</option>
           ))}
@@ -77,7 +87,7 @@ export default function Assignments() {
                   onChange={e => setSelectedEmployee(e.target.value)}
                   required
                 >
-                  <option value="">  Select an employee  </option>
+                  <option value="">Select an employee</option>
                   {employees.map(emp => (
                     <option key={emp.id} value={emp.id}>
                       {emp.fullName} ({emp.username})

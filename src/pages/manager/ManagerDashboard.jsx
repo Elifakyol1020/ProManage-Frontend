@@ -3,11 +3,13 @@ import projectService from "../../services/ProjectService";
 import userService from "../../services/UserService";
 import { Link } from "react-router-dom";
 import { FaClipboardList, FaUsers, FaPlusCircle, FaClipboardCheck } from "react-icons/fa";
+import { useAuthContext } from "../../context/AuthContext";
 
 export default function ManagerDashboard() {
   const [projectCount, setProjectCount] = useState(0);
   const [userCount, setUserCount] = useState(0);
   const [recentProjects, setRecentProjects] = useState([]);
+  const { user } = useAuthContext();
 
   useEffect(() => {
     projectService.getAllProjects().then(res => {
@@ -19,7 +21,7 @@ export default function ManagerDashboard() {
 
   return (
     <div className="container mt-4">
-      <h2 className="mb-4" style={{ color: "var(--primary-color)", fontWeight: 700 }}>Welcome, Manager!</h2>
+      <h2 className="mb-4" style={{ color: "var(--primary-color)", fontWeight: 700 }}>Welcome, {user.sub}!</h2>
       <div className="row g-4 mb-4">
         <div className="col-md-6">
           <div className="card shadow-sm h-100" style={{ borderLeft: "6px solid var(--primary-color)" }}>

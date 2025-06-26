@@ -46,7 +46,7 @@ export default function ManagerHeader() {
           <div className="d-flex align-items-center gap-3">
             <Link to="/manager/profile" className="d-flex align-items-center" style={{ color: "#fff", textDecoration: "none", fontWeight: 500 }}>
               <FaUserCircle size={26} style={{ marginRight: 6 }} />
-              <span style={{ fontSize: "1rem" }}>{user?.username || "Manager"}</span>
+              <span style={{ fontSize: "1rem" }}>{user?.sub || "Manager"}</span>
             </Link>
             <button className="btn btn-light btn-sm ms-2 d-flex align-items-center" style={{ borderRadius: 8, fontWeight: 600 }} onClick={handleLogout}>
               <FaSignOutAlt style={{ marginRight: 4 }} /> Logout

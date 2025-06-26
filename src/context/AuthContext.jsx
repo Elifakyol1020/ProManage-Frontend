@@ -8,14 +8,15 @@ export function AuthProvider({ children }) {
     const token = localStorage.getItem("token");
     if (!token) return null;
     const decoded = jwtDecode(token);
-    return { token, role: decoded.role || [] };
+    return { token, role: decoded.role || [], sub: decoded.sub || "User" };
   });
 
   const login = (token) => {
     localStorage.setItem("token", token);
     const decoded = jwtDecode(token);
     const role = decoded.role || [];
-    setUser({ token, role });
+    const sub = decoded.sub || "User";
+    setUser({ token, role , sub });
   };
 
   const logout = () => {
