@@ -1,15 +1,13 @@
-import Footer from "../components/Footer";
 import { Outlet } from "react-router-dom";
-import Header from "../components/Header";
+import ManagerHeader from "../components/ManagerHeader";
 
 export default function ManagerLayout() {
   return (
     <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
-      <Header/>
+      <ManagerHeader/>
       <main style={{ flex: "1"}}>
         <Outlet />
       </main>
-      <Footer/>
     </div>
   );
 }

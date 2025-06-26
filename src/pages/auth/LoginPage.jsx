@@ -1,8 +1,8 @@
 import { useState } from "react";
-import authService from "../services/AuthService";
-import { useAuthContext } from "../context/AuthContext";
+import authService from "../../services/AuthService";
+import { useAuthContext } from "../../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
-import "../css/Auth.css";
+import "../../css/Auth.css";
 import { FaUserCircle } from "react-icons/fa";
 
 export default function LoginPage() {

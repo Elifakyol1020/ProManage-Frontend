@@ -1,15 +1,23 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/auth/LoginPage";
+import RegisterPage from "./pages/auth/RegisterPage";
 import PrivateRoute from "./route/PrivateRoute";
 import RoleRedirect from "./route/RoleRedirect";
+import ManagerLayout from "./layouts/ManagerLayout";
+import EmployeeLayout from "./layouts/EmployeeLayout";
+import ManagerDashboard from "./pages/manager/ManagerDashboard";
+import Projects from "./pages/manager/Projects";
+import ProjectCreate from "./pages/manager/ProjectCreate";
+import ProjectDetail from "./pages/manager/ProjectDetail";
+import ProjectEdit from "./pages/manager/ProjectEdit";
+import Assignments from "./pages/manager/Assignments";
+import Users from "./pages/manager/Users";
+import UserDetail from "./pages/manager/UserDetail";
+import AuditLogs from "./pages/manager/AuditLogs";
+import Profile from "./pages/manager/Profile";
 
-const ManagerPanel = () => <div>Yönetici Paneli</div>;
-const EmployeePanel = () => <div>Çalışan Paneli</div>;
-const HomePage = () => (
-  <div>Ana Sayfa (Giriş yapınca buraya yönlendirilir)</div>
-);
+
 const NotFound = () => <div>404 - Sayfa Bulunamadı</div>;
 
 export default function App() {
@@ -31,16 +39,27 @@ export default function App() {
             path="/manager"
             element={
               <PrivateRoute allowedRoles={["ROLE_MANAGER"]}>
-                <ManagerPanel />
+                <ManagerLayout />
               </PrivateRoute>
             }
-          />
+          >
+            <Route path="dashboard" element={<ManagerDashboard />} />
+            <Route path="projects" element={<Projects />} />
+            <Route path="projects/new" element={<ProjectCreate />} />
+            <Route path="projects/:id" element={<ProjectDetail />} />
+            <Route path="projects/:id/edit" element={<ProjectEdit />} />
+            <Route path="assignments" element={<Assignments />} />
+            <Route path="users" element={<Users />} />
+            <Route path="users/:id" element={<UserDetail />} />
+            <Route path="audit-logs" element={<AuditLogs />} />
+            <Route path="profile" element={<Profile />} />
+          </Route>
 
           <Route
             path="/employee"
             element={
               <PrivateRoute allowedRoles={["ROLE_EMPLOYEE"]}>
-                <EmployeePanel />
+                <EmployeeLayout />
               </PrivateRoute>
             }
           />

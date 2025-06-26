@@ -1,7 +1,7 @@
 import { useState } from "react";
-import authService from "../services/AuthService";
+import authService from "../../services/AuthService";
 import { useNavigate, Link } from "react-router-dom";
-import "../css/Auth.css";
+import "../../css/Auth.css";
 import { FaUserPlus } from "react-icons/fa";
 
 export default function RegisterPage() {
