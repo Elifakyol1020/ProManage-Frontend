@@ -14,7 +14,7 @@ export default function EmployeeHeader() {
   return (
     <nav className="navbar navbar-expand-lg" style={{ background: "var(--primary-color)", boxShadow: "0 2px 8px rgba(54,116,181,0.08)" }}>
       <div className="container-fluid">
-        <Link className="navbar-brand d-flex align-items-center" to="/employee" style={{ color: "#fff", fontWeight: 700, fontSize: "1.3rem", letterSpacing: 1 }}>
+        <Link className="navbar-brand d-flex align-items-center" to="/employee/dashboard" style={{ color: "#fff", fontWeight: 700, fontSize: "1.3rem", letterSpacing: 1 }}>
           <FaProjectDiagram style={{ marginRight: 8, fontSize: 24 }} /> ProManage
         </Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#employeeNavbar" aria-controls="employeeNavbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,7 +23,7 @@ export default function EmployeeHeader() {
         <div className="collapse navbar-collapse" id="employeeNavbar">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link" to="/employee" style={{ color: "#fff", fontWeight: 500 }}>
+              <Link className="nav-link" to="/employee/dashboard" style={{ color: "#fff", fontWeight: 500 }}>
                 <FaHome style={{ marginRight: 4 }} /> Dashboard
               </Link>
             </li>

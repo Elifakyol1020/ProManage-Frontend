@@ -14,7 +14,7 @@ export default function ManagerHeader() {
   return (
     <nav className="navbar navbar-expand-lg" style={{ background: "var(--primary-color)", boxShadow: "0 2px 8px rgba(54,116,181,0.08)" }}>
       <div className="container-fluid">
-        <Link className="navbar-brand d-flex align-items-center" to="/manager" style={{ color: "#fff", fontWeight: 700, fontSize: "1.3rem", letterSpacing: 1 }}>
+        <Link className="navbar-brand d-flex align-items-center" to="/manager/dashboard" style={{ color: "#fff", fontWeight: 700, fontSize: "1.3rem", letterSpacing: 1 }}>
           <FaProjectDiagram style={{ marginRight: 8, fontSize: 24 }} /> ProManage
         </Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#managerNavbar" aria-controls="managerNavbar" aria-expanded="false" aria-label="Toggle navigation">

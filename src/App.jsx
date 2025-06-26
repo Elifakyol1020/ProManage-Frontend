@@ -16,7 +16,10 @@ import Users from "./pages/manager/Users";
 import UserDetail from "./pages/manager/UserDetail";
 import AuditLogs from "./pages/manager/AuditLogs";
 import Profile from "./pages/manager/Profile";
-
+import EmployeeDashboard from "./pages/employee/EmployeeDashboard";
+import MyProjects from "./pages/employee/MyProjects";
+import EmployeeProjectDetail from "./pages/employee/ProjectDetail";
+import EmployeeProfile from "./pages/employee/Profile";
 
 const NotFound = () => <div>404 - Sayfa Bulunamadı</div>;
 
@@ -62,7 +65,12 @@ export default function App() {
                 <EmployeeLayout />
               </PrivateRoute>
             }
-          />
+          >
+            <Route path="dashboard" element={<EmployeeDashboard />} />
+            <Route path="projects" element={<MyProjects />} />
+            <Route path="projects/:id" element={<EmployeeProjectDetail />} />
+            <Route path="profile" element={<EmployeeProfile />} />
+          </Route>
 
           <Route path="*" element={<NotFound />} />
         </Routes>
