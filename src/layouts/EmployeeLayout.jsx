@@ -6,10 +6,11 @@ export default function EmployeeLayout() {
   return (
     <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       <Header/>
-      <main style={{ flex: "1"}}>
+      <main style={{ flex: "1"}}> 
         <Outlet />
       </main>
       <Footer/>
     </div>
+    
   );
 }
