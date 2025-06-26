@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import userService from "../../services/UserService";
+import Button from "../../components/Button";
 
 export default function Profile() {
   const [user, setUser] = useState(null);
@@ -40,10 +41,10 @@ export default function Profile() {
 
   return (
     <div className="container mt-4" style={{ maxWidth: 600 }}>
-      <h2 className="mb-4" style={{ color: "var(--primary-color)", fontWeight: 700 }}>My Profile</h2>
-      <div className="card mb-4 shadow-sm">
+      <h4 className="mb-4" style={{ color: "var(--primary-color)", fontWeight: 700, letterSpacing: 1 }}>My Profile</h4>
+      <div className="card mb-4 shadow-sm" style={{ borderRadius: "var(--card-radius)" }}>
         <div className="card-body">
-          <h5 className="card-title mb-3">Profile Information</h5>
+          <h5 className="card-title mb-3" style={{ color: "var(--primary-color)", fontWeight: 700 }}>Profile Information</h5>
           <div className="mb-2"><strong>Username:</strong> {user.username}</div>
           <div className="mb-2"><strong>Full Name:</strong> {user.fullName}</div>
           <div className="mb-2"><strong>Position:</strong> {user.position}</div>
@@ -51,36 +52,38 @@ export default function Profile() {
         </div>
       </div>
 
-      <div className="card mb-4">
+      <div className="card mb-4 shadow-sm" style={{ borderRadius: "var(--card-radius)" }}>
         <div className="card-body">
-          <h5 className="card-title mb-3">Update Email</h5>
+          <h5 className="card-title mb-3" style={{ color: "var(--primary-color)", fontWeight: 700 }}>Update Email</h5>
           {emailMsg && <div className="alert alert-info py-2">{emailMsg}</div>}
           <form onSubmit={handleEmailUpdate} className="row g-2 align-items-end">
             <div className="col-8">
               <input
                 type="email"
                 className="form-control"
+                style={{ borderRadius: "var(--card-radius)" }}
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 required
               />
             </div>
             <div className="col-4">
-              <button type="submit" className="btn btn-primary w-100">Update Email</button>
+              <Button type="submit" className="w-100" style={{ fontWeight: 600, borderRadius: 8 }}>Update Email</Button>
             </div>
           </form>
         </div>
       </div>
 
-      <div className="card mb-4">
+      <div className="card mb-4 shadow-sm" style={{ borderRadius: "var(--card-radius)" }}>
         <div className="card-body">
-          <h5 className="card-title mb-3">Change Password</h5>
+          <h5 className="card-title mb-3" style={{ color: "var(--primary-color)", fontWeight: 700 }}>Change Password</h5>
           {pwMsg && <div className="alert alert-info py-2">{pwMsg}</div>}
           <form onSubmit={handlePasswordUpdate} className="row g-2 align-items-end">
             <div className="col-5">
               <input
                 type="password"
                 className="form-control"
+                style={{ borderRadius: "var(--card-radius)" }}
                 placeholder="Old Password"
                 value={oldPassword}
                 onChange={e => setOldPassword(e.target.value)}
@@ -91,6 +94,7 @@ export default function Profile() {
               <input
                 type="password"
                 className="form-control"
+                style={{ borderRadius: "var(--card-radius)" }}
                 placeholder="New Password"
                 value={newPassword}
                 onChange={e => setNewPassword(e.target.value)}
@@ -98,7 +102,7 @@ export default function Profile() {
               />
             </div>
             <div className="col-2">
-              <button type="submit" className="btn btn-primary w-100">Update</button>
+              <Button type="submit" className="w-100" style={{ fontWeight: 600, borderRadius: 8 }}>Update</Button>
             </div>
           </form>
         </div>

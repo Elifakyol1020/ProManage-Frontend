@@ -18,7 +18,6 @@ export default function ProjectDetail() {
     ])
       .then(([projRes, assignRes]) => {
         setProject(projRes.data);
-        // Sadece bu projeye ait atama
         const found = assignRes.data.find(a => String(a.projectId) === String(id));
         setAssignment(found);
       })
@@ -33,10 +32,10 @@ export default function ProjectDetail() {
   return (
     <div className="container mt-4" style={{ maxWidth: 700 }}>
       <div className="d-flex justify-content-between align-items-center mb-3">
-        <h2 style={{ color: "var(--primary-color)", fontWeight: 700 }}>{project.name}</h2>
-        <Link to="/employee/projects" className="btn btn-outline-secondary">Back to My Projects</Link>
+        <h4 style={{ color: "var(--primary-color)", fontWeight: 700, letterSpacing: 1 }}>{project.name}</h4>
+        <Link to="/employee/projects" className="btn btn-outline-primary" style={{ fontWeight: 600, borderRadius: 8, borderColor: "var(--primary-color)" }}>Back to My Projects</Link>
       </div>
-      <div className="card mb-4 shadow-sm">
+      <div className="card mb-4 shadow-sm" style={{ borderRadius: "var(--card-radius)" }}>
         <div className="card-body">
           <div className="mb-2"><strong>Description:</strong> {project.description}</div>
           <div className="mb-2"><strong>Status:</strong> {project.status}</div>

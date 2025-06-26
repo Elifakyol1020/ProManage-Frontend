@@ -94,7 +94,7 @@ export default function EmployeeHeader() {
             </Link>
             <button
               className="btn btn-light btn-sm ms-2 d-flex align-items-center"
-              style={{ borderRadius: 8, fontWeight: 600 }}
+              style={{ borderRadius: 8, fontWeight: 600, color: "var(--primary-color)"  }}
               onClick={handleLogout}
             >
               <FaSignOutAlt style={{ marginRight: 4 }} /> Logout

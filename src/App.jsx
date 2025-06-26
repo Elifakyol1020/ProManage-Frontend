@@ -20,6 +20,7 @@ import EmployeeDashboard from "./pages/employee/EmployeeDashboard";
 import MyProjects from "./pages/employee/MyProjects";
 import EmployeeProjectDetail from "./pages/employee/ProjectDetail";
 import EmployeeProfile from "./pages/employee/Profile";
+import UserEdit from "./pages/manager/UserEdit";
 
 const NotFound = () => <div>404 - Sayfa Bulunamadı</div>;
 
@@ -54,6 +55,7 @@ export default function App() {
             <Route path="assignments" element={<Assignments />} />
             <Route path="users" element={<Users />} />
             <Route path="users/:id" element={<UserDetail />} />
+            <Route path="users/:id/edit" element={<UserEdit/>}/>
             <Route path="audit-logs" element={<AuditLogs />} />
             <Route path="profile" element={<Profile />} />
           </Route>

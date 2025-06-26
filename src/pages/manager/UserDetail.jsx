@@ -14,7 +14,7 @@ export default function UserDetail() {
     setLoading(true);
     Promise.all([
       userService.getUserById(id),
-      assignmentService.listMyProjects(id) 
+      assignmentService.listMyProjects(id)
     ])
       .then(([userRes, assignRes]) => {
         setUser(userRes.data);
@@ -31,10 +31,13 @@ export default function UserDetail() {
   return (
     <div className="container mt-4" style={{ maxWidth: 700 }}>
       <div className="d-flex justify-content-between align-items-center mb-3">
-        <h2 style={{ color: "var(--primary-color)", fontWeight: 700 }}>{user.fullName}</h2>
-        <Link to="/manager/users" className="btn btn-outline-secondary">Back to Users</Link>
+        <h4 style={{ color: "var(--primary-color)", fontWeight: 700, letterSpacing: 1 }}>{user.fullName}</h4>
+        <div>
+          <Link to={`/manager/users/${user.id}/edit`} className="btn btn-primary me-2" style={{ fontWeight: 600, borderRadius: 8 }}>Edit</Link>
+          <Link to="/manager/users" className="btn btn-outline-primary" style={{ fontWeight: 600, borderRadius: 8, borderColor: "var(--primary-color)" }}>Back to Users</Link>
+        </div>
       </div>
-      <div className="card mb-4 shadow-sm">
+      <div className="card mb-4 shadow-sm" style={{ borderRadius: "var(--card-radius)" }}>
         <div className="card-body">
           <div className="mb-2"><strong>Username:</strong> {user.username}</div>
           <div className="mb-2"><strong>Email:</strong> {user.email}</div>
@@ -42,21 +45,21 @@ export default function UserDetail() {
           <div className="mb-2"><strong>Roles:</strong> {user.roles?.join(", ")}</div>
         </div>
       </div>
-      <div className="card mb-4">
-        <div className="card-header bg-white" style={{ fontWeight: 600, color: "var(--primary-color)" }}>
+      <div className="card mb-4 shadow-sm">
+        <div className="card-header bg-white" style={{ fontWeight: 700, color: "var(--primary-color)", borderTopLeftRadius: "var(--card-radius)", borderTopRightRadius: "var(--card-radius)" }}>
           Assigned Projects
         </div>
         <div className="card-body p-0">
-          <table className="table mb-0">
-            <thead>
+          <table className="table mb-0 table-bordered table-hover align-middle">
+            <thead className="table-light">
               <tr>
-                <th>Project</th>
-                <th>Assigned Date</th>
+                <th style={{ color: "var(--primary-color)", fontWeight: 600 }}>Project</th>
+                <th style={{ color: "var(--primary-color)", fontWeight: 600 }}>Assigned Date</th>
               </tr>
             </thead>
             <tbody>
               {assignments.length === 0 && (
-                <tr><td colSpan={2} className="text-center">No projects assigned.</td></tr>
+                <tr><td colSpan={2} className="text-center text-muted">No projects assigned.</td></tr>
               )}
               {assignments.map(a => (
                 <tr key={a.assignmentId}>

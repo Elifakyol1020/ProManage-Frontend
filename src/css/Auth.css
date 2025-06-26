@@ -70,8 +70,8 @@
   background: linear-gradient(90deg, #3674B5 60%, #5fa8e6 100%);
   border: none;
   color: #fff;
-  padding: 0.85rem;
-  font-weight: 700;
+  padding: 0.4rem;
+  font-weight: 600;
   border-radius: var(--input-radius);
   transition: background var(--transition), transform var(--transition);
   font-size: 1.08rem;

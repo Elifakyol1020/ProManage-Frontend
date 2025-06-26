@@ -5,7 +5,7 @@ import assignmentService from "../../services/ProjectAssignmentService";
 
 export default function Assignments() {
   const [projects, setProjects] = useState([]);
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedProject, setSelectedProject] = useState("");
   const [employees, setEmployees] = useState([]);
   const [assignments, setAssignments] = useState([]);
   const [selectedEmployee, setSelectedEmployee] = useState("");
@@ -27,9 +27,8 @@ export default function Assignments() {
 
   const handleAssign = (e) => {
     e.preventDefault();
-    setMessage(""); 
+    setMessage("");
     if (!selectedProject || !selectedEmployee) return;
-
     if(selectedProject === "") {
       setMessage("Please select a project to assign employees.");
       return;
@@ -38,7 +37,7 @@ export default function Assignments() {
       setMessage("Please select an employee to assign.");
       return;
     }
-    assignmentService.assignEmployeeToProject(selectedProject,selectedEmployee)
+    assignmentService.assignEmployeeToProject(Number(selectedProject), Number(selectedEmployee))
       .then(() => {
         setMessage("Employee assigned successfully!");
         assignmentService.listEmployeesByProject(selectedProject)
@@ -58,83 +57,88 @@ export default function Assignments() {
 
   return (
     <div className="container mt-4">
-      <h2>Project Assignments</h2>
+      <h4 className="mb-4" style={{ color: "var(--primary-color)", fontWeight: 700 }}>Project Assignments</h4>
       {message && <div className="alert alert-info">{message}</div>}
 
-      <div className="mb-3">
-        <label className="form-label">Select Project</label>
-        <select
-          className="form-select"
-          value={selectedProject || ""}
-          onChange={e => setSelectedProject(e.target.value)}
-        >
-          <option value="">Select a project</option>
-          {projects.map(p => (
-            <option key={p.id} value={p.id}>{p.name}</option>
-          ))}
-        </select>
+      <div className="card mb-4 shadow-sm">
+        <div className="card-body">
+          <form className="row g-3 align-items-end" onSubmit={handleAssign}>
+            <div className="col-md-5">
+              <label className="form-label" style={{ color: "var(--primary-color)", fontWeight: 600 }}>Select Project</label>
+              <select
+                className="form-select"
+                value={selectedProject}
+                onChange={e => setSelectedProject(e.target.value)}
+                required
+              >
+                <option value="">Select a project</option>
+                {projects.map(p => (
+                  <option key={p.id} value={p.id}>{p.name}</option>
+                ))}
+              </select>
+            </div>
+            <div className="col-md-5">
+              <label className="form-label" style={{ color: "var(--primary-color)", fontWeight: 600 }}>Select Employee</label>
+              <select
+                className="form-select"
+                value={selectedEmployee}
+                onChange={e => setSelectedEmployee(e.target.value)}
+                required
+              >
+                <option value="">Select an employee</option>
+                {employees.map(emp => (
+                  <option key={emp.id} value={emp.id}>
+                    {emp.fullName} ({emp.username})
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="col-md-2 d-flex align-items-end">
+              <button type="submit" className="btn btn-primary w-100" style={{ fontWeight: 600, borderRadius: 8 }}>Assign</button>
+            </div>
+          </form>
+        </div>
       </div>
 
       {selectedProject && (
-        <>
-          <form className="mb-4" onSubmit={handleAssign}>
-            <div className="row g-2 align-items-end">
-              <div className="col-md-6">
-                <label className="form-label">Select Employee</label>
-                <select
-                  className="form-select"
-                  value={selectedEmployee}
-                  onChange={e => setSelectedEmployee(e.target.value)}
-                  required
-                >
-                  <option value="">Select an employee</option>
-                  {employees.map(emp => (
-                    <option key={emp.id} value={emp.id}>
-                      {emp.fullName} ({emp.username})
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div className="col-md-3">
-                <button type="submit" className="btn btn-primary w-100">
-                  Assign Employee
-                </button>
-              </div>
-            </div>
-          </form>
-
-          <h5>Assigned Employees</h5>
-          <table className="table table-bordered">
-            <thead>
-              <tr>
-                <th>Employee</th>
-                <th>Assigned Date</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {assignments.length === 0 && (
+        <div className="card shadow-sm">
+          <div className="card-header bg-white" style={{ color: "var(--primary-color)", fontWeight: 700 }}>
+            Assigned Employees
+          </div>
+          <div className="card-body p-0">
+            <table className="table table-bordered table-hover align-middle mb-0">
+              <thead className="table-light">
                 <tr>
-                  <td colSpan={3} className="text-center">No assignments yet.</td>
+                  <th style={{ color: "var(--primary-color)", fontWeight: 600 }}>Employee</th>
+                  <th style={{ color: "var(--primary-color)", fontWeight: 600 }}>Assigned Date</th>
+                  <th style={{ color: "var(--primary-color)", fontWeight: 600 }}>Actions</th>
                 </tr>
-              )}
-              {assignments.map(a => (
-                <tr key={a.assignmentId}>
-                  <td>{a.employeeName}</td>
-                  <td>{a.assignedDate}</td>
-                  <td>
-                    <button
-                      className="btn btn-danger btn-sm"
-                      onClick={() => handleUnassign(a.assignmentId)}
-                    >
-                      Unassign
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </>
+              </thead>
+              <tbody>
+                {assignments.length === 0 && (
+                  <tr>
+                    <td colSpan={3} className="text-center text-muted">No assignments yet.</td>
+                  </tr>
+                )}
+                {assignments.map(a => (
+                  <tr key={a.assignmentId}>
+                    <td>{a.employeeName}</td>
+                    <td>{a.assignedDate}</td>
+                    <td>
+                      <button
+                        className="btn btn-outline-danger btn-sm"
+                        style={{ fontWeight: 600, borderRadius: 8 }}
+                        onClick={() => handleUnassign(a.assignmentId)}
+                      >
+                        Unassign
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
       )}
     </div>
   );

@@ -32,17 +32,18 @@ export default function ProjectCreate() {
 
   return (
     <div className="container mt-4" style={{ maxWidth: 600 }}>
-      <h2 className="mb-4" style={{ color: "var(--primary-color)", fontWeight: 700 }}>Create New Project</h2>
-      <div className="card shadow-sm">
+      <h4 className="mb-4" style={{ color: "var(--primary-color)", fontWeight: 700, letterSpacing: 1 }}>Create New Project</h4>
+      <div className="card shadow-sm" style={{ borderRadius: "var(--card-radius)" }}>
         <div className="card-body">
           {error && <div className="alert alert-danger">{error}</div>}
           {success && <div className="alert alert-success">{success}</div>}
           <form onSubmit={handleSubmit} className="row g-3">
             <div className="col-12">
-              <label className="form-label">Project Name</label>
+              <label className="form-label" style={{ color: "var(--primary-color)", fontWeight: 600 }}>Project Name</label>
               <input
                 type="text"
                 className="form-control"
+                style={{  borderRadius: "var(--input-radius)" }}
                 name="name"
                 value={form.name}
                 onChange={handleChange}
@@ -50,9 +51,10 @@ export default function ProjectCreate() {
               />
             </div>
             <div className="col-12">
-              <label className="form-label">Description</label>
+              <label className="form-label" style={{ color: "var(--primary-color)", fontWeight: 600 }}>Description</label>
               <textarea
                 className="form-control"
+                style={{  borderRadius: "var(--input-radius)" }}
                 name="description"
                 value={form.description}
                 onChange={handleChange}
@@ -61,10 +63,11 @@ export default function ProjectCreate() {
               />
             </div>
             <div className="col-md-6">
-              <label className="form-label">Start Date</label>
+              <label className="form-label" style={{ color: "var(--primary-color)", fontWeight: 600 }}>Start Date</label>
               <input
                 type="date"
                 className="form-control"
+                style={{  borderRadius: "var(--input-radius)" }}
                 name="startDate"
                 value={form.startDate}
                 onChange={handleChange}
@@ -72,10 +75,11 @@ export default function ProjectCreate() {
               />
             </div>
             <div className="col-md-6">
-              <label className="form-label">End Date</label>
+              <label className="form-label" style={{ color: "var(--primary-color)", fontWeight: 600 }}>End Date</label>
               <input
                 type="date"
                 className="form-control"
+                style={{  borderRadius: "var(--input-radius)" }}
                 name="endDate"
                 value={form.endDate}
                 onChange={handleChange}
@@ -83,7 +87,7 @@ export default function ProjectCreate() {
               />
             </div>
             <div className="col-12 d-flex justify-content-end">
-              <button type="submit" className="btn btn-primary px-4">Create Project</button>
+              <button type="submit" className="btn btn-primary px-4" style={{ fontWeight: 600, borderRadius: 8 }}>Create Project</button>
             </div>
           </form>
         </div>

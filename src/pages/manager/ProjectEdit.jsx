@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import projectService from "../../services/ProjectService";
 
-const statusOptions = ["NOT_STARTED", "IN_PROGRESS", "COMPLETED", "ON_HOLD"];
+const statusOptions = ["NEW", "IN_PROGRESS", "COMPLETED", "INCOMPLETE"];
 
 export default function ProjectEdit() {
   const { id } = useParams();
@@ -11,7 +11,7 @@ export default function ProjectEdit() {
     description: "",
     startDate: "",
     endDate: "",
-    status: "NOT_STARTED"
+    status: "NEW"
   });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -54,17 +54,21 @@ export default function ProjectEdit() {
 
   return (
     <div className="container mt-4" style={{ maxWidth: 600 }}>
-      <h2 className="mb-4" style={{ color: "var(--primary-color)", fontWeight: 700 }}>Edit Project</h2>
-      <div className="card shadow-sm">
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <h4 className="mb-0" style={{ color: "var(--primary-color)", fontWeight: 700, letterSpacing: 1 }}>Edit Project</h4>
+        <Link to={`/manager/projects/${id}`} className="btn btn-outline-primary" style={{ fontWeight: 600, borderRadius: 8, borderColor: "var(--primary-color)" }}>Back</Link>
+      </div>
+      <div className="card shadow-sm" style={{ borderRadius: "var(--card-radius)" }}>
         <div className="card-body">
           {error && <div className="alert alert-danger">{error}</div>}
           {success && <div className="alert alert-success">{success}</div>}
           <form onSubmit={handleSubmit} className="row g-3">
             <div className="col-12">
-              <label className="form-label">Project Name</label>
+              <label className="form-label" style={{ color: "var(--primary-color)", fontWeight: 600 }}>Project Name</label>
               <input
                 type="text"
                 className="form-control"
+                style={{  borderRadius: "var(--input-radius)" }}
                 name="name"
                 value={form.name}
                 onChange={handleChange}
@@ -72,9 +76,10 @@ export default function ProjectEdit() {
               />
             </div>
             <div className="col-12">
-              <label className="form-label">Description</label>
+              <label className="form-label" style={{ color: "var(--primary-color)", fontWeight: 600 }}>Description</label>
               <textarea
                 className="form-control"
+                style={{  borderRadius: "var(--input-radius)" }}
                 name="description"
                 value={form.description}
                 onChange={handleChange}
@@ -83,10 +88,11 @@ export default function ProjectEdit() {
               />
             </div>
             <div className="col-md-6">
-              <label className="form-label">Start Date</label>
+              <label className="form-label" style={{ color: "var(--primary-color)", fontWeight: 600 }}>Start Date</label>
               <input
                 type="date"
                 className="form-control"
+                style={{  borderRadius: "var(--input-radius)" }}
                 name="startDate"
                 value={form.startDate}
                 onChange={handleChange}
@@ -94,10 +100,11 @@ export default function ProjectEdit() {
               />
             </div>
             <div className="col-md-6">
-              <label className="form-label">End Date</label>
+              <label className="form-label" style={{ color: "var(--primary-color)", fontWeight: 600 }}>End Date</label>
               <input
                 type="date"
                 className="form-control"
+                style={{  borderRadius: "var(--input-radius)" }}
                 name="endDate"
                 value={form.endDate}
                 onChange={handleChange}
@@ -105,9 +112,10 @@ export default function ProjectEdit() {
               />
             </div>
             <div className="col-12">
-              <label className="form-label">Status</label>
+              <label className="form-label" style={{ color: "var(--primary-color)", fontWeight: 600 }}>Status</label>
               <select
                 className="form-select"
+                style={{  borderRadius: "var(--input-radius)" }}
                 name="status"
                 value={form.status}
                 onChange={handleChange}
@@ -119,7 +127,7 @@ export default function ProjectEdit() {
               </select>
             </div>
             <div className="col-12 d-flex justify-content-end">
-              <button type="submit" className="btn btn-primary px-4">Update Project</button>
+              <button type="submit" className="btn btn-primary px-4" style={{ fontWeight: 600, borderRadius: 8 }}>Update Project</button>
             </div>
           </form>
         </div>
