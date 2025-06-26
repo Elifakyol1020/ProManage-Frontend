@@ -57,7 +57,7 @@ export default function Profile() {
           <h5 className="card-title mb-3" style={{ color: "var(--primary-color)", fontWeight: 700 }}>Update Email</h5>
           {emailMsg && <div className="alert alert-info py-2">{emailMsg}</div>}
           <form onSubmit={handleEmailUpdate} className="row g-2 align-items-end">
-            <div className="col-8">
+            <div className="col-12 col-md-8">
               <input
                 type="email"
                 className="form-control"
@@ -67,7 +67,7 @@ export default function Profile() {
                 required
               />
             </div>
-            <div className="col-4">
+            <div className="col-12 col-md-4">
               <Button type="submit" className="w-100" style={{ fontWeight: 600, borderRadius: 8 }}>Update Email</Button>
             </div>
           </form>
@@ -79,7 +79,7 @@ export default function Profile() {
           <h5 className="card-title mb-3" style={{ color: "var(--primary-color)", fontWeight: 700 }}>Change Password</h5>
           {pwMsg && <div className="alert alert-info py-2">{pwMsg}</div>}
           <form onSubmit={handlePasswordUpdate} className="row g-2 align-items-end">
-            <div className="col-5">
+            <div className="col-12 col-md-5">
               <input
                 type="password"
                 className="form-control"
@@ -90,7 +90,7 @@ export default function Profile() {
                 required
               />
             </div>
-            <div className="col-5">
+            <div className="col-12 col-md-5">
               <input
                 type="password"
                 className="form-control"
@@ -101,7 +101,7 @@ export default function Profile() {
                 required
               />
             </div>
-            <div className="col-2">
+            <div className="col-12 col-md-2">
               <Button type="submit" className="w-100" style={{ fontWeight: 600, borderRadius: 8 }}>Update</Button>
             </div>
           </form>
